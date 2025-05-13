@@ -5,16 +5,37 @@ html, body {
     height: 100%;
 
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    font-weight: bold;
+    font-weight: bolder;
 
     color: white;
 }
 
+div, button {
+    font-weight: bolder;
+}
+
+button {
+    width: 100%;
+    height: 60px;
+    background-color: rgb(70,70,70);
+    border-radius: 5px;
+    border: none;
+    color: rgb(200,200,200);
+    transition: 0.1s;
+}
+
+button:not(.noclick):hover {
+    background-color: rgb(80,80,80);
+}
+
+button:not(.noclick):active {
+    transform: scale(0.95);
+}
 #site-banner {
     position: fixed;
     width: calc(100% - 200px);
     height: 60px;
-    background-color: rgb(45,45,45);
+    background-color: rgb(40,40,40);
     left: 200px;
 }
 
@@ -29,7 +50,7 @@ html, body {
 #cash-container {
     position: fixed;
     top: 10px;
-    left: calc(100% - 200px);
+    left: calc(100% - 300px);
     width: 170px;
     height: 20px;
     background-color: rgb(60,60,60);
@@ -44,7 +65,7 @@ html, body {
     gap: 10px;
     width: 200px;
     height: 100%;
-    background-color: rgb(50,50,50);
+    background-color: rgb(35,35,35);
 }
 
 .nav-bar-item {
@@ -55,7 +76,7 @@ html, body {
     margin: 0px 10px 0px 10px;
     width: 180px;
     height: auto;
-    background-color: rgb(60,60,60);
+    background-color: rgb(50,50,50);
     border-radius: 5px;
 }
 
@@ -103,10 +124,10 @@ html, body {
 .nav-btn {
     width: 100%;
     height: 40px;
-    background-color: rgb(60,60,60);
+    background-color: rgb(50,50,50);
     border: none;
     border-radius: 5px;
-    color: white;
+    color: rgb(150,150,150);
     text-align: left;
     padding-left: 40px;
 }
@@ -120,18 +141,20 @@ html, body {
 .page {
     position: fixed;
     display: flex;
+    flex-direction: column;
     left: 200px;
     top: 60px;
     background-color: rgb(45,45,45);
     width: calc(100% - 200px);
     height: calc(100% - 60px);
+    align-items: center;
 }
 
 .banner {
-    position: absolute;
-    width: 100%;
+    position: relative;
+    width: calc(100% - 100px);
     height: 130px;
-    background-color: rgb(75,75,75);
+    background-color: rgb(60,60,60);
     display: flex;
     align-items: center;
     padding-left: 100px;
@@ -152,13 +175,132 @@ html, body {
 }
 
 .content-item {
+    border: none;
     width: 200px;
     height: 300px;
     background-color: rgb(60,60,60);
     border-radius: 20px;
     transition: 0.15s;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
 }
 
 .content-item:hover {
     margin-top: -15px;
+}
+img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover; /* ensures the image resizes to fit the div */
+    margin: 0px;
+    padding: 0px;
+}
+
+.nav-btn.nav-selected {
+    font-weight: bolder;
+    color: white;
+}
+
+.content-window {
+    display: block;
+    position: relative;
+    top: 100px;
+    width: calc(100% - 200px);
+    height: 800px;
+    border-radius: 15px;
+    background-color:rgb(35,35,35);
+}
+
+.game-sidebar {
+    width: 400px;
+    height: 100%;
+    background-color: rgb(55,55,55);
+    border-radius: 15px 0px 0px 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.enter-bet {
+    position: relative;
+    top: 50px;
+    width: 100%;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.enter-bet-label {
+    position: relative;
+    width: calc(100% - 50px);
+    height: 20px;
+    font-size: 13px;
+    padding-left: 0px;
+    color: rgb(150,150,150);
+}
+.input {
+    width: calc(100% - 60px);
+    height: 40px;
+    background-color: rgb(40,40,40);
+    border-radius: 5px;
+    border: 2px solid rgb(70,70,70);
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    transition: 0.1s;
+    font-size: 12px;
+}
+
+.input:hover {
+    background-color: rgb(35,35,35);
+    border-color: rgb(100,100,100);
+}
+
+.input:focus {
+    outline: 1px solid white;
+}
+
+.input::placeholder, .input[type="number"] {
+    color: rgb(200,200,200);
+}
+
+.coinside-btns {
+    width: calc(100% - 40px);
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    position: relative;
+    justify-content: center;
+}
+
+.coinside-btn {
+    width: 173px;
+}
+
+.coinside-btn.active {
+    background-color: rgb(90,90,90);
+    border: 2px solid rgb(120,120,120);
+}
+
+.play-btn {
+    background-color: rgb(20, 150, 60);
+}
+.play-btn:not(.noclick):hover {
+    background-color: rgb(40, 170, 80) !important;
+}
+
+.play-btn.noclick {
+    background-color: rgb(0, 80, 20);
+}
+
+.coinside-btn.noclick {
+    background-color: rgb(50,50,50);
 }
