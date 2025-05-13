@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/casino/">
   <title>Casino 🎰🎰🎰</title>
   <link rel="stylesheet" href="style.css">
   <script src="main.js"></script>
@@ -15,7 +16,7 @@
     <div id="nav-bar">
         <div id="library-bar" class="nav-bar-item">
             <div class="nav-btns">
-                <button class="nav-btn">Library</button>
+                <button id="nav-library-btn" class="nav-btn">Library</button>
             </div>
         </div>
         <div id="games-bar" class="nav-bar-item">
@@ -24,18 +25,24 @@
                 <div class="nav-header-divider"></div>
             </div>
             <div class="nav-btns">
-                <button class="nav-btn">Coin Flip</button>
+                <button id="nav-coinflip-btn" class="nav-btn nav-selected">Coin Flip</button>
             </div>
         </div>
      </div>
-    <div id="library" class="page">
-        <div class="banner">Library</div>
-        <div class="content-items">
-            <button id="coinflip-btn" class="content-item">
-                <img src="https://raw.githubusercontent.com/waffold/casino/main/coinflip.png" alt="coin flip">
-            </button>
-            <div class="content-item"></div>
-            <div class="content-item"></div>
+    <div class="page">
+        <div class="content-window">
+            <div class="game-sidebar">
+                
+                <div class="enter-bet">
+                    <span class="enter-bet-label">Amount</span>
+                    <input type="number" placeholder="0.00" id="coinflip-bet" class="input"></input>
+                </div>
+                <div class="coinside-btns">
+                    <button id="heads-btn" class="coinside-btn" onclick="coinflipSelectCoin('heads')">Heads</button>
+                    <button id="tails-btn" class="coinside-btn" onclick="coinflipSelectCoin('tails')">Tails</button>
+                </div>
+                <button id="coinflip-play" class="play-btn" style="width: calc(100% - 40px)" onclick="coinflipPlay()">Play</button>
+            </div>
         </div>
     </div>
 </body>
