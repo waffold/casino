@@ -206,13 +206,16 @@ img {
 }
 
 .content-window {
-    display: block;
     position: relative;
     top: 100px;
     width: calc(100% - 200px);
     height: 800px;
     border-radius: 15px;
     background-color:rgb(35,35,35);
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
 }
 
 .game-sidebar {
@@ -231,22 +234,23 @@ img {
     position: relative;
     top: 50px;
     width: 100%;
-    height: 130px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.enter-bet-label {
+.label{
     position: relative;
-    width: calc(100% - 50px);
+    width: calc(100% - 40px);
     height: 20px;
     font-size: 13px;
     padding-left: 0px;
     color: rgb(150,150,150);
+    display: block;
 }
 .input {
-    width: calc(100% - 60px);
+    width: calc(100% - 55px);
     height: 40px;
     background-color: rgb(40,40,40);
     border-radius: 5px;
@@ -258,7 +262,7 @@ img {
     font-size: 12px;
 }
 
-.input:hover {
+.input:not(.noclick):hover {
     background-color: rgb(35,35,35);
     border-color: rgb(100,100,100);
 }
@@ -269,6 +273,10 @@ img {
 
 .input::placeholder, .input[type="number"] {
     color: rgb(200,200,200);
+}
+
+.input.invalid {
+    outline: 1px solid red;
 }
 
 .coinside-btns {
@@ -290,17 +298,73 @@ img {
     border: 2px solid rgb(120,120,120);
 }
 
-.play-btn {
+.event-btn {
     background-color: rgb(20, 150, 60);
 }
-.play-btn:not(.noclick):hover {
+.event-btn:not(.noclick):hover {
     background-color: rgb(40, 170, 80) !important;
 }
 
-.play-btn.noclick {
-    background-color: rgb(0, 80, 20);
+.event-btn.noclick {
+    background-color: rgb(30, 80, 40);
 }
 
 .coinside-btn.noclick {
     background-color: rgb(50,50,50);
+}
+
+.history-bar {
+    position: relative;
+    top: calc(100% - 140px);
+    width: calc(100% - 440px);
+    height: 120px;
+    background-color: rgb(55,55,55);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-label {
+    top: 10px;
+    left: 20px;
+    height: 30px;
+}
+
+.history-container {
+    position: relative;
+    width: calc(100% - 80px);
+    height: 30px;
+    background-color: rgb(30,30,30);
+    border-radius: 5px;
+    left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.profit-field {
+    width: calc(100% - 20px);
+    height: 20px;
+    border-radius: 5px;
+    background-color: rgb(70,70,70);
+    font-size: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.profit {
+    width: calc(100% - 40px);
+    height: 70px;
+}
+
+.hidden {
+    display: none;
+}
+
+.icon {
+    width: 30px;
+    height: 30px;
 }
