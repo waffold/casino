@@ -34,14 +34,24 @@
             <div class="game-sidebar">
                 
                 <div class="enter-bet">
-                    <span class="enter-bet-label">Amount</span>
-                    <input type="number" placeholder="0.00" id="coinflip-bet" class="input"></input>
+                    <span class="label">Amount</span>
+                    <input id="enter-bet-field" type="number" placeholder="0.00" class="input"></input>
+                </div>
+                <div id="profit-area" class="profit hidden">
+                    <span id="profit-label" class="label">Total Profit (1.00x)</span>
+                    <div id="profit-field" class="profit-field">0.00</div>
                 </div>
                 <div class="coinside-btns">
-                    <button id="heads-btn" class="coinside-btn" onclick="coinflipSelectCoin('heads')">Heads</button>
-                    <button id="tails-btn" class="coinside-btn" onclick="coinflipSelectCoin('tails')">Tails</button>
+                    <button id="heads-btn" class="coinside-btn noclick">Heads</button>
+                    <button id="tails-btn" class="coinside-btn noclick">Tails</button>
                 </div>
-                <button id="coinflip-play" class="play-btn" style="width: calc(100% - 40px)" onclick="coinflipPlay()">Play</button>
+                <button id="event-btn" class="event-btn" style="width: calc(100% - 40px)" onclick="coinflipPlay()">Play</button>
+                
+            </div>
+            <div class="history-bar">
+                <span class="label history-label">History</span>
+                <div id="coin-history" class="history-container">
+                </div>
             </div>
         </div>
     </div>
