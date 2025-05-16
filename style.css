@@ -22,15 +22,27 @@ button {
     border: none;
     color: rgb(200,200,200);
     transition: 0.1s;
+    
 }
+
 
 button:not(.noclick):hover {
     background-color: rgb(80,80,80);
 }
 
-button:not(.noclick):active {
-    transform: scale(0.95);
+/* button:not(.noclick):active {
+    
+} */
+
+.game-btn {
+    box-shadow: 0 6px 0px rgba(0,0,0,0.3);
 }
+.game-btn:not(.noclick):active {
+    box-shadow: none;
+    margin-top: 2px;
+}
+
+
 #site-banner {
     position: fixed;
     width: calc(100% - 200px);
@@ -45,18 +57,6 @@ button:not(.noclick):active {
     top: 10px;
     margin: 0px;
     color: white;
-}
-
-#cash-container {
-    position: fixed;
-    top: 10px;
-    left: calc(100% - 300px);
-    width: 170px;
-    height: 20px;
-    background-color: rgb(60,60,60);
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
 }
 
 #nav-bar {
@@ -214,7 +214,6 @@ img {
     background-color:rgb(35,35,35);
     display: flex;
     flex-direction: row;
-    gap: 20px;
 
 }
 
@@ -233,16 +232,17 @@ img {
 .enter-bet {
     position: relative;
     top: 50px;
-    width: 100%;
+    width: calc(100% - 40px);
     height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 5px;
 }
 
 .label{
     position: relative;
-    width: calc(100% - 40px);
+    width: 100%;
     height: 20px;
     font-size: 13px;
     padding-left: 0px;
@@ -250,16 +250,17 @@ img {
     display: block;
 }
 .input {
-    width: calc(100% - 55px);
+    width: calc(100% - 46px);
     height: 40px;
     background-color: rgb(40,40,40);
-    border-radius: 5px;
-    border: 2px solid rgb(70,70,70);
+    border-radius: 4px;
+    border: 3px solid rgb(70,70,70);
     display: flex;
     align-items: center;
-    padding-left: 10px;
+    padding: 0px 30px 0px 10px;
     transition: 0.1s;
     font-size: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
 .input:not(.noclick):hover {
@@ -290,7 +291,12 @@ img {
 }
 
 .coinside-btn {
-    width: 173px;
+    width: 175px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
 }
 
 .coinside-btn.active {
@@ -306,17 +312,16 @@ img {
 }
 
 .event-btn.noclick {
-    background-color: rgb(30, 80, 40);
+    opacity: .3;
 }
 
 .coinside-btn.noclick {
-    background-color: rgb(50,50,50);
+    opacity: .4;
 }
 
 .history-bar {
     position: relative;
-    top: calc(100% - 140px);
-    width: calc(100% - 440px);
+    width: calc(100% - 20px);
     height: 120px;
     background-color: rgb(55,55,55);
     border-radius: 10px;
@@ -347,10 +352,8 @@ img {
 .profit-field {
     width: calc(100% - 20px);
     height: 20px;
-    border-radius: 5px;
-    background-color: rgb(70,70,70);
     font-size: 12px;
-    padding: 10px;
+    font-weight: 500;
     display: flex;
     align-items: center;
 }
@@ -360,11 +363,126 @@ img {
     height: 70px;
 }
 
+.profit-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: calc(100% - 20px);
+    height: 20px;
+    padding: 10px;
+    background-color: rgb(70,70,70);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
 .hidden {
     display: none;
+    opacity: 1;
 }
 
 .icon {
     width: 30px;
     height: 30px;
+}
+
+.label-icon {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-height: 960px) {
+    .history-bar {
+        bottom: 0px;
+    }
+    .coin-container {
+        height: calc(100vh - 290px) !important;
+    }
+}
+
+.cash {
+    position: fixed;
+    top: 7px;
+    width: 200px;
+    left: calc(50% - 0px);
+}
+
+.field-container {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.after-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-left: calc(100% - 32px);
+}
+
+.flipToH, .flipToT {
+    transition: .5s ease-out;
+    transform-style: preserve-3d;
+}
+
+.flipToH {
+    transform: rotateY(720deg);
+}
+
+.flipToT {
+    transform: rotateY(540deg);
+}
+
+.coin-container {
+    width: 100%;
+    height: calc(100% - 130px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    perspective: 1000px;
+    
+}
+.game-page {
+    width: calc(100% - 400px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#coin-img {
+    width: 300px;
+    height: 300px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.heads-coin {
+    background-image: url("https://waffold.github.io/casino/images/headsface.png");
+}
+
+.tails-coin {
+    background-image: url("https://waffold.github.io/casino/images/tailsface.png");
+    transform: rotateY(180deg);
+}
+
+.heads-coin, .tails-coin {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background-size: cover;
+  backface-visibility: hidden;
+}
+
+.overlay {
+    position: absolute;
+    width: calc(100% + 40px);
+    height: calc(100% + 5px);
+    margin-top: -4px;
+    background-color: rgb(20,20,20);
+    opacity: .5;
 }
