@@ -23,15 +23,15 @@ document.addEventListener("DOMContentLoaded", function() {
         redirect("coinflip");
     });
     let betField = $("enter-bet-field");
-    betField.addEventListener("input", function() {
-        
-        console.log("edit");
-        if(betField.value > user.cash) {
-            betField.classList.toggle("invalid", true);
-        } else {
-            betField.classList.toggle("invalid", false);
-        }
-    });
+    if(betField) {
+        betField.addEventListener("input", function() {
+            console.log("edit");
+            makeBetInvalid(betField);
+        });
+
+        makeBetInvalid(betField);
+    }
+   ;
     betField.addEventListener("blur", function() {
         betField.value = parseFloat(betField.value).toFixed(2);
     })
@@ -44,12 +44,25 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 });
 
+function makeBetInvalid(betField) {
+    let invalid = checkInvalidBet(betField);
+    if(invalid) {
+        betField.classList.toggle("invalid", true);
+    } else {
+        betField.classList.toggle("invalid", false);
+    }
+}
+
 function redirect(a) {
     window.location.href = "/casino/" + a;
 }
 
 function home() {
     window.location.href = "/casino";
+}
+
+function checkInvalidBet(betField) {
+    return betField.value > user.cash || betField.value < 0.01;
 }
 
 // function coinflipSelectCoin(a) {
@@ -73,6 +86,8 @@ function home() {
 function coinflipPlay() {
     let btns = document.getElementsByClassName("coinside-btn");
     let eventBtn = $("event-btn");
+    let invalid = checkInvalidBet($("enter-bet-field"));
+    if(invalid) {return;}
     if(session.on == false) {
         for(let i = 0; i < btns.length; i++) {
             $(btns[i].id).classList.toggle("noclick", false);
@@ -109,6 +124,7 @@ function coinflipPlay() {
 
         $("enter-bet-field").classList.toggle("noclick", false);
         $("enter-bet-field").disabled = false;
+        //$("face-btns-overlay").classList.toggle("hidden", false);
 
         session.on = false;
     }
@@ -121,49 +137,66 @@ function coinflip(pick) {
     $("tails-btn").classList.toggle("noclick", true);
     $("event-btn").classList.toggle("noclick", true);
 
+    $("coin-img").classList.remove("flipToH", "flipToT");
+
     let r = Math.ceil( Math.random()*2);
     let side;
     switch(r) {
         case 1:
             side = "heads";
+            void $("coin-img").offsetWidth;
+            $("coin-img").classList.add("flipToH");
+            setTimeout(function() {
+                $("coin-img").style.backgroundImage = "url('https://waffold.github.io/casino/images/headsface.png')";
+            }, 500);
             break;
         case 2:
             side = "tails";
+            void $("coin-img").offsetWidth;
+            $("coin-img").classList.add("flipToT");
+            setTimeout(function() {
+                $("coin-img").style.backgroundImage = "url('https://waffold.github.io/casino/images/tailsface.png')";
+            }, 500);
+            //$("coin-img").classList.toggle("flipToT", true);
             break;
     }
-    let icon = document.createElement("div");
-    icon.className = "icon";
-    let img = document.createElement("img");
-    img.src = "https://waffold.github.io/casino/images/" + side + ".png"
-    icon.appendChild(img);
-    $("coin-history").appendChild(icon);
-    session.history.push(side);
-    console.log(side, pick);
-    if(side == pick) {
-        console.log(session.mult);
-        if(session.mult == 1) {
-            session.mult = 1.96;
-            console.log("here", session.mult);
-        } else {
+    setTimeout(function() {
+        let icon = document.createElement("div");
+        icon.className = "icon";
+        let img = document.createElement("img");
+        img.src = "https://waffold.github.io/casino/images/" + side + ".png"
+        icon.appendChild(img);
+        $("coin-history").appendChild(icon);
+        session.history.push(side);
+        console.log(side, pick);
+        if(side == pick) {
             console.log(session.mult);
-            session.mult *= 2;
+            if(session.mult == 1) {
+                session.mult = 1.96;
+                console.log("here", session.mult);
+            } else {
+                console.log(session.mult);
+                session.mult *= 2;
+            }
+            console.log(session.mult);
+            $("profit-label").innerHTML = "Total Profit (" + session.mult + "x)";
+            $("profit-field").innerHTML = (session.bet * (session.mult - 1)).toFixed(2);
+        } else {
+            console.log("lose haha");
+            session.on = false;
+            $("profit-area").classList.toggle("hidden", true);
+            $("event-btn").innerHTML = "Play";
+            $("enter-bet-field").disabled = false;
+            $("enter-bet-field").classList.toggle("noclick", false);
+            makeBetInvalid($("enter-bet-field"));
+            //$("face-btns-overlay").classList.toggle("hidden", false);
         }
-        console.log(session.mult);
-        $("profit-label").innerHTML = "Total Profit (" + session.mult + "x)";
-        $("profit-field").innerHTML = (session.bet * (session.mult - 1)).toFixed(2);
-    } else {
-        console.log("lose haha");
-        session.on = false;
-        $("profit-area").classList.toggle("hidden", true);
-        $("event-btn").innerHTML = "Play";
-        $("enter-bet-field").disabled = false;
-        $("enter-bet-field").classList.toggle("noclick", false);
-    }
-    if(session.on) {
-        $("heads-btn").classList.toggle("noclick", false);
-        $("tails-btn").classList.toggle("noclick", false);
-    }
-    $("event-btn").classList.toggle("noclick", false);
+        if(session.on) {
+            $("heads-btn").classList.toggle("noclick", false);
+            $("tails-btn").classList.toggle("noclick", false);
+        }
+        $("event-btn").classList.toggle("noclick", false);
+    }, 500);
 }
 
 
