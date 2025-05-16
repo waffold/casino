@@ -11,7 +11,7 @@
 <body>
     <div id="site-banner">
         <h1 id="site-header">Casino</h1>
-        <div id="cash-container">$Money</div>
+        <div id="cash-container" class="input cash">$Money</div>
     </div>
     <div id="nav-bar">
         <div id="library-bar" class="nav-bar-item">
@@ -35,22 +35,42 @@
                 
                 <div class="enter-bet">
                     <span class="label">Amount</span>
-                    <input id="enter-bet-field" type="number" placeholder="0.00" class="input"></input>
+                    <div class="field-container">
+                        <img src="https://waffold.github.io/casino/images/gold.png" class="after-icon">
+                        <input id="enter-bet-field" type="number" placeholder="0.00" class="input"></input>
+                    </div>
                 </div>
                 <div id="profit-area" class="profit hidden">
                     <span id="profit-label" class="label">Total Profit (1.00x)</span>
-                    <div id="profit-field" class="profit-field">0.00</div>
+                    <div id="profit-bar" class="profit-bar">
+                        <div id="profit-field" class="profit-field">0.00</div>
+                        <img class="label-icon" src="https://waffold.github.io/casino/images/gold.png">
+                    </div>
                 </div>
                 <div class="coinside-btns">
-                    <button id="heads-btn" class="coinside-btn noclick">Heads</button>
-                    <button id="tails-btn" class="coinside-btn noclick">Tails</button>
+                    <button id="heads-btn" class="coinside-btn game-btn noclick">
+                        <span>Heads</span>
+                        <img src="https://waffold.github.io/casino/images/heads.png" class="label-icon">
+                    </button>
+                    <button id="tails-btn" class="coinside-btn game-btn noclick">
+                        <span>Tails</span>
+                        <img src="https://waffold.github.io/casino/images/tails.png" class="label-icon">
+                    </button>
                 </div>
-                <button id="event-btn" class="event-btn" style="width: calc(100% - 40px)" onclick="coinflipPlay()">Play</button>
+                <button id="event-btn" class="event-btn game-btn" style="width: calc(100% - 40px)" onclick="coinflipPlay()">Play</button>
                 
             </div>
-            <div class="history-bar">
-                <span class="label history-label">History</span>
-                <div id="coin-history" class="history-container">
+            <div class="game-page">
+                <div class="coin-container">
+                    <div id="coin-img" class="coin">
+                        <div class="heads-coin"></div>
+                        <div class="tails-coin"></div>
+                    </div>
+                </div>
+                <div class="history-bar">
+                    <span class="label history-label">History</span>
+                    <div id="coin-history" class="history-container">
+                    </div>
                 </div>
             </div>
         </div>
