@@ -11,12 +11,21 @@
 <body>
     <div id="site-banner">
         <h1 id="site-header">Casino</h1>
-        <div id="cash-container" class="input cash">$Money</div>
+        <div id="cash-container" class="input cash">
+            <img src="https://waffold.github.io/casino/images/gold.png" class="after-icon field-icon">
+            <span id="cash"class="label">$Money</span>
+        </div>
+        <button id="reset-btn" class="game-btn">
+            <span>Reset</span>
+            <img src="https://waffold.github.io/casino/images/reset.png" class="label-icon">
+        </button>
     </div>
     <div id="nav-bar">
         <div id="library-bar" class="nav-bar-item">
-            <div class="nav-btns">
-                <button id="nav-library-btn" class="nav-btn">Library</button>
+            <div id="nav-library-btn" class="nav-btns">
+                <button class="nav-btn">
+                    <span class="nav-text">Library</span>
+                </button>
             </div>
         </div>
         <div id="games-bar" class="nav-bar-item">
@@ -24,8 +33,16 @@
                 <span class="nav-header-text">Games</span>
                 <div class="nav-header-divider"></div>
             </div>
-            <div class="nav-btns">
-                <button id="nav-coinflip-btn" class="nav-btn nav-selected">Coin Flip</button>
+            <div id="nav-coinflip-btn" class="nav-btns">
+                <button class="nav-btn nav-selected">
+                    <span class="nav-text">Coin Flip</span>
+                </button>
+            </div>
+            <div id="nav-plinko-btn" class="nav-btns">
+                <button class="nav-btn">
+                    <span class="nav-text">Plinko</span>
+                    <img class="label-icon" src="https://waffold.github.io/casino/images/warn.png">
+                </button>
             </div>
         </div>
      </div>
@@ -36,8 +53,13 @@
                 <div class="enter-bet">
                     <span class="label">Amount</span>
                     <div class="field-container">
-                        <img src="https://waffold.github.io/casino/images/gold.png" class="after-icon">
-                        <input id="enter-bet-field" type="number" placeholder="0.00" class="input"></input>
+                        <img src="https://waffold.github.io/casino/images/gold.png" class="after-icon bet-inner">
+                        <input id="enter-bet-field" type="number" placeholder="0.00" class="input bet"></input>
+                        <button id="bet-1" class="bet-option">1</button>
+                        <div class="bet-divider"></div>
+                        <button id="bet-2" class="bet-option">2</button>
+                        <div class="bet-divider divi2"></div>
+                        <button id="bet-allin" class="bet-option bet-extended">All in</button>
                     </div>
                 </div>
                 <div id="profit-area" class="profit hidden">
@@ -70,6 +92,14 @@
                 <div class="history-bar">
                     <span class="label history-label">History</span>
                     <div id="coin-history" class="history-container">
+                    </div>
+                </div>
+                <div id="win-popup" class="win-popup">
+                    <div id="win-mult" class="win-mult win">3.92x</div>
+                    <div class="win-divider"></div>
+                    <div id="win-amount-container" class="win-amount win">
+                        <span id="win-amount" class="win">$29.20</span>
+                        <img src="https://waffold.github.io/casino/images/gold.png" class="label-icon">
                     </div>
                 </div>
             </div>
