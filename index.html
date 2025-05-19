@@ -10,12 +10,17 @@
 <body>
     <div id="site-banner">
         <h1 id="site-header">Casino</h1>
-        <div id="cash-container">$Money</div>
+        <div id="cash-container" class="input cash">
+            <img src="https://waffold.github.io/casino/images/gold.png" class="after-icon field-icon">
+            <span id="cash"class="label">$Money</span>
+        </div>
     </div>
     <div id="nav-bar">
         <div id="library-bar" class="nav-bar-item">
-            <div id="nav-library-btn" class="nav-btns nav-selected">
-                <button class="nav-btn nav-selected">Library</button>
+            <div id="nav-library-btn" class="nav-btns">
+                <button class="nav-btn nav-selected">
+                    <span class="nav-text">Library</span>
+                </button>
             </div>
         </div>
         <div id="games-bar" class="nav-bar-item">
@@ -24,18 +29,34 @@
                 <div class="nav-header-divider"></div>
             </div>
             <div id="nav-coinflip-btn" class="nav-btns">
-                <button class="nav-btn">Coin Flip</button>
+                <button class="nav-btn">
+                    <span class="nav-text">Coin Flip</span>
+                </button>
+            </div>
+            <div id="nav-plinko-btn" class="nav-btns">
+                <button class="nav-btn">
+                    <span class="nav-text">Plinko</span>
+                    <img class="label-icon" src="https://waffold.github.io/casino/images/warn.png">
+                </button>
             </div>
         </div>
      </div>
     <div class="page">
         <div class="banner">Library</div>
         <div class="content-items">
-            <button id="coinflip-btn" class="content-item" onclick="redirect('coinflip')">
-                <img src="https://waffold.github.io/casino/coinflip.png" alt="coin flip">
-            </button>
-            <div class="content-item"></div>
-            <div class="content-item"></div>
+            <div class="game-btn-container">
+                <button id="coinflip-btn" class="content-item" onclick="redirect('coinflip')">
+                    <img src="https://waffold.github.io/casino/images/coinflip.png" alt="coin flip">
+                </button>
+                <p class="game-desc">Bet heads or tails on a coinflip. Chain multiple correct guesses to increase your multiplier.</p>
+            </div>
+            <div class="game-btn-container">
+                <button id="coinflip-btn" class="content-item" onclick="redirect('plinko')">
+                    <img src="https://waffold.github.io/casino/images/plinko.png" alt="plinko">
+                </button>
+                <p class="game-desc">Drop Plinko balls into the pin pyramid. Land the ball on the highest multiplier.</p>
+                <img class="label-icon" src="https://waffold.github.io/casino/images/warn.png">
+            </div>
         </div>
     </div>
 </body>
