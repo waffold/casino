@@ -17,31 +17,63 @@ let session = {
 document.addEventListener("DOMContentLoaded", function() {
     updateCash();
     $("nav-library-btn").addEventListener("click", function() {
+        console.log("nav-home");
         home();
     });
-    $("nav-coinflip-btn").addEventListener("click", function() {
-        redirect("coinflip");
+    let coinflipBtn =  $("nav-coinflip-btn");
+    console.log(coinflipBtn);
+    if(coinflipBtn) {
+        coinflipBtn.addEventListener("click", function() {
+            console.log("nav");
+            redirect("coinflip");
+        });
+    }
+    $("nav-plinko-btn").addEventListener("click", function() {
+        redirect("plinko");
     });
+    
     let betField = $("enter-bet-field");
     if(betField) {
         betField.addEventListener("input", function() {
             console.log("edit");
             makeBetInvalid(betField);
         });
+        betField.addEventListener("blur", function() {
+            betField.value = parseFloat(betField.value).toFixed(2);
+        });
 
         makeBetInvalid(betField);
     }
-   ;
-    betField.addEventListener("blur", function() {
-        betField.value = parseFloat(betField.value).toFixed(2);
-    })
+    
+    let headsBtn = $("heads-btn");
+    if(headsBtn) {
+        headsBtn.addEventListener("click", function() {
+            if(session.on) { coinflip("heads");}
+        });
+        $("tails-btn").addEventListener("click", function() {
+            if(session.on) { coinflip("tails");}
+        });
+        $("reset-btn").addEventListener("click", function() {
+            user.cash = 10;
+            updateCash();
+            console.log("reset");
+            makeBetInvalid(betField);
+        });
+        $("bet-1").addEventListener("click", function() {
+            $("enter-bet-field").value = (1.00).toFixed(2);
+            makeBetInvalid(betField);
+        });
+        $("bet-2").addEventListener("click", function() {
+            $("enter-bet-field").value = (2.00).toFixed(2);
+            makeBetInvalid(betField);
+        });
+        $("bet-allin").addEventListener("click", function() {
+            $("enter-bet-field").value = user.cash.toFixed(2);
+            makeBetInvalid(betField);
+        });
+    }
 
-    $("heads-btn").addEventListener("click", function() {
-        if(session.on) { coinflip("heads");}
-    })
-    $("tails-btn").addEventListener("click", function() {
-        if(session.on) { coinflip("tails");}
-    })
+    
 });
 
 function makeBetInvalid(betField) {
@@ -86,9 +118,10 @@ function checkInvalidBet(betField) {
 function coinflipPlay() {
     let btns = document.getElementsByClassName("coinside-btn");
     let eventBtn = $("event-btn");
-    let invalid = checkInvalidBet($("enter-bet-field"));
-    if(invalid) {return;}
+    
     if(session.on == false) {
+        let invalid = checkInvalidBet($("enter-bet-field"));
+        if(invalid) {return;}
         for(let i = 0; i < btns.length; i++) {
             $(btns[i].id).classList.toggle("noclick", false);
         }
@@ -110,12 +143,15 @@ function coinflipPlay() {
         user.cash -= session.bet;
         updateCash();
         $("coin-history").innerHTML = "";
+        $("win-popup").classList.toggle("visible", false);
     } else {
         console.log("cashout");
 
-        let profit = (session.bet * (session.mult - 1)).toFixed(2);
+        let profit = (session.bet * session.mult).toFixed(2);
         user.cash += parseFloat(profit);
         updateCash();
+
+        makeBetInvalid($("enter-bet-field"));
 
         $("event-btn").innerHTML = "Play";
         $("heads-btn").classList.toggle("noclick", true);
@@ -124,6 +160,10 @@ function coinflipPlay() {
 
         $("enter-bet-field").classList.toggle("noclick", false);
         $("enter-bet-field").disabled = false;
+
+        $("win-mult").innerHTML = "" + session.mult + "x";
+        $("win-amount").innerHTML = "$" + profit;
+        $("win-popup").classList.toggle("visible", true);
         //$("face-btns-overlay").classList.toggle("hidden", false);
 
         session.on = false;
@@ -180,7 +220,7 @@ function coinflip(pick) {
             }
             console.log(session.mult);
             $("profit-label").innerHTML = "Total Profit (" + session.mult + "x)";
-            $("profit-field").innerHTML = (session.bet * (session.mult - 1)).toFixed(2);
+            $("profit-field").innerHTML = ((session.bet * session.mult) - session.bet).toFixed(2);
         } else {
             console.log("lose haha");
             session.on = false;
@@ -202,7 +242,7 @@ function coinflip(pick) {
 
 function updateCash() {
     console.log("update")
-    $("cash-container").innerHTML = "$" + user.cash.toFixed(2);
+    $("cash").innerHTML = "$" + user.cash.toFixed(2);
 }
 
 
