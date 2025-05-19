@@ -49,14 +49,18 @@ button:not(.noclick):hover {
     height: 60px;
     background-color: rgb(40,40,40);
     left: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
 }
 
 #site-header {
-    position: fixed;
-    left: 300px;
-    top: 10px;
+    display: block;
+    position: relative;
     margin: 0px;
     color: white;
+    left: 100px;
 }
 
 #nav-bar {
@@ -121,6 +125,11 @@ button:not(.noclick):hover {
     gap: 0px;
 }
 
+.nav-text {
+    position: relative;
+    margin-left: 40px;
+}
+
 .nav-btn {
     width: 100%;
     height: 40px;
@@ -129,7 +138,10 @@ button:not(.noclick):hover {
     border-radius: 5px;
     color: rgb(150,150,150);
     text-align: left;
-    padding-left: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
 }
 .nav-btn:hover {
     background-color: rgb(80,80,80);
@@ -164,14 +176,14 @@ button:not(.noclick):hover {
 
 .content-items {
     position: relative;
-    top: 130px;
+    top: 50px;
+    left: 100px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
     height: calc(100% - 190px);
-    padding: 50px 0px 0px 100px;
 }
 
 .content-item {
@@ -188,9 +200,22 @@ button:not(.noclick):hover {
     padding: 0px;
 }
 
+.game-desc {
+    color: rgb(200,200,200);
+    font-weight: 300;
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    white-space: normal;
+    overflow-wrap: break-word;
+    line-height: 1.4;
+    max-width: 200px;
+}
+
 .content-item:hover {
     margin-top: -15px;
 }
+
 img {
     width: 100%;
     height: 100%;
@@ -263,13 +288,13 @@ img {
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
 }
 
-.input:not(.noclick):hover {
+.input:not(.noclick):not(.invalid):hover {
     background-color: rgb(35,35,35);
     border-color: rgb(100,100,100);
 }
 
 .input:focus {
-    outline: 1px solid white;
+    outline: none;
 }
 
 .input::placeholder, .input[type="number"] {
@@ -277,7 +302,7 @@ img {
 }
 
 .input.invalid {
-    outline: 1px solid red;
+    border-color: rgb(180, 30, 30);
 }
 
 .coinside-btns {
@@ -387,6 +412,7 @@ img {
 .label-icon {
     width: 20px;
     height: 20px;
+    
 }
 
 @media (max-height: 960px) {
@@ -403,6 +429,10 @@ img {
     top: 7px;
     width: 200px;
     left: calc(50% - 0px);
+}
+
+#cash {
+    display: flex;
 }
 
 .field-container {
@@ -485,4 +515,103 @@ img {
     margin-top: -4px;
     background-color: rgb(20,20,20);
     opacity: .5;
+}
+
+.field-icon {
+    margin-left: calc(100% - 40px) !important;
+}
+
+#reset-btn {
+    position: relative;
+    left: 55%;
+    width: 120px;
+    height: calc(100% - 20px);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.bet {
+    width: calc(100% - 200px) !important;
+    border-radius: 10px 0px 0px 10px !important;
+}
+.bet-option {
+    height: 46px;
+    width: 40px;
+    background-color: rgb(70,70,70);
+    border-radius: 0px;
+}
+
+.bet-extended {
+    width: 73px;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.bet-inner {
+    left: -155px;
+}
+.bet-divider {
+    position: absolute;
+    left: 245px;
+    display:inline;
+    background-color: rgb(50,50,50);
+    width: 2px;
+    height: 20px;
+}
+
+.divi2 {
+    left: 285px;
+}
+
+.win-popup {
+    width: 100px;
+    height: 80px;
+    background-color: rgb(50,50,50);
+    border: 8px solid rgb(0, 230, 15);
+    position: absolute;
+    border-radius: 20px;
+    top: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: .1s ease-out;
+    opacity: 0;
+}
+
+.win-popup.visible {
+    opacity: 1;
+    width: 150px;
+    height: 120px;
+}
+
+.win-mult {
+    width: 100%;
+    height: 30px;
+    
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.win-amount {
+    margin-top: 7px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.win {
+    color: rgb(0, 230, 15);
+    text-align: center;
+}
+
+.win-divider {
+    width: 80%;
+    height: 3px;
+    background-color: rgb(20,20,20);
 }
